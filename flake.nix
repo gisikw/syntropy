@@ -11,26 +11,24 @@
 
   outputs = inputs@{ nixpkgs, deploy-rs, captainhook, ... }:
     let
-      inventory = import ./inventory.nix;
-
       hostDefs = [
         {
           name = "captainhook";
-          system = inventory.captainhook.system;
           input = captainhook;
         }
       ];
 
-      makeHost = { name, system, input }: {
+      makeHost = { name, input }: {
         nixosConfigurations.${name} = input.nixosConfigurations.${name};
         deploy.nodes.${name} = {
-          hostname = inventory.${name}.ip;
+          hostname = "<redacted>"; # Real host passed via CLI
           sshUser = "syntropy";
           sshOpts = [ "-i" "~/.ssh/syntropy-deploy" ];
           profiles.system = {
             user = "root";
             remoteBuild = true;
-            path = deploy-rs.lib.${system}.activate.nixos input.nixosConfigurations.${name};
+            path = deploy-rs.lib.${input.nixosConfigurations.${name}.config.nixpkgs.system}.activate.nixos
+              input.nixosConfigurations.${name};
           };
         };
       };

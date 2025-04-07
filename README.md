@@ -4,15 +4,11 @@ An exploratory repository for leveraging NixOS to manage hobbyist infrastructure
 
 * Assumes you have a NixOS install already running on the host machine
 * Assumes you have a `syntropy` user with passwordless sudo
-* Depends on a gitignored `inventory.nix` file in the root directory with IPs
+* Depends on a gitignored `inventory.ini` file in the root directory with IPs/hostnames
 
-```nix
-{
-  mycoolhost = {
-    ip = "192.168.1.1";
-    system = "x86_64-linux";
-  };
-}
+```ini
+[hosts]
+myHost = 192.168.1.1
 ```
 
 ## 🖥️ Usage
