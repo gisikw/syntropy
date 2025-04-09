@@ -11,6 +11,12 @@ An exploratory repository for leveraging NixOS to manage hobbyist infrastructure
 myHost = 192.168.1.1
 ```
 
+### Beelink Setup
+
+There's an assumption of a boot partition labeled `BOOT`, and a root partition
+labeled `nixos` in /dev/sda. They also need keys at /etc/agenix/identity that are
+permitted to decrypt the agenix secrets.
+
 ## 🖥️ Usage
 
 ```

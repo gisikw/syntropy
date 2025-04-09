@@ -1,4 +1,5 @@
 { config, lib, pkgs, ... }: {
+  nixpkgs.config.allowUnfree = true;
   networking.usePredictableInterfaceNames = false;
   users.mutableUsers = false;
 
