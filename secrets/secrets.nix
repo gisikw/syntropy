@@ -4,4 +4,6 @@ let
 in
 {
   "wifi.age".publicKeys = [ deploy hosts ];
+  "wg-cypher.age".publicKeys = [ deploy hosts ];
+  "wg-captainhook.age".publicKeys = [ deploy hosts ];
 }
