@@ -44,6 +44,31 @@
               };
             };
           })
+
+          ({ pkgs, lib, config, ... }: let
+            myMinecraftServer = pkgs.minecraft-server.overrideAttrs (old: rec {
+              version = "1.21.5";
+              src = pkgs.fetchurl {
+                url = "https://piston-data.mojang.com/v1/objects/e6ec2f64e6080b9b5d9b471b291c33cc7f509733/server.jar";
+                sha256 = "sha256-rnaB2tziG2tAF9KOfrVn2GtsEAppaZlPVAueVPgS3Ck=";
+              };
+            });
+          in {
+            networking.firewall.allowedTCPPorts = [ 25565 ];
+            services.minecraft-server = {
+              enable = true;
+              package = myMinecraftServer;
+              eula = true;
+              declarative = true;
+              serverProperties = {
+                level-seed = "-2726085149442701246";
+                motd = "Welcome to Gisi Island!";
+                max-players = 4;
+                gamemode = "survival";
+                difficulty = 2;
+              };
+            };
+          })
         ];
       };
     };

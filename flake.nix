@@ -9,9 +9,10 @@
 
     captainhook.url = "path:./hosts/captainhook";
     cypher.url = "path:./hosts/cypher";
+    drhorrible.url = "path:./hosts/drhorrible";
   };
 
-  outputs = inputs@{ nixpkgs, deploy-rs, captainhook, cypher, ... }:
+  outputs = inputs@{ nixpkgs, deploy-rs, captainhook, cypher, drhorrible, ... }:
     let
       hostDefs = [
         {
@@ -21,6 +22,10 @@
         {
           name = "cypher";
           input = cypher;
+        }
+        {
+          name = "drhorrible";
+          input = drhorrible;
         }
       ];
 

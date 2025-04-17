@@ -13,9 +13,15 @@ myHost = 192.168.1.1
 
 ### Beelink Setup
 
-There's an assumption of a boot partition labeled `BOOT`, and a root partition
-labeled `nixos` in /dev/sda. They also need keys at /etc/agenix/identity that are
-permitted to decrypt the agenix secrets.
+After installing from the NixOS LiveCD, be sure to run
+* Enabling SSH in /etc/nixos/configuration.nix
+
+Then, remotely, prior to deploying, be sure to
+* Visudo and grant syntropy ALL=(ALL) NOPASSWD: ALL
+* fatlabel /dev/sda1 BOOT
+* e2label /dev/sda2 nixos
+* Place the host agenix key at /etc/agenix/identity
+* Copy the publickey to ~/.ssh/authorized_keys
 
 ## 🖥️ Usage
 
